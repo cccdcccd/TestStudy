@@ -94,14 +94,10 @@ html {
 
 body {
   background-color: var(--c-bg);
-  background-image:
-    linear-gradient(var(--c-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--c-border) 1px, transparent 1px);
-  background-size: 24px 24px;
   color: var(--c-text);
   font-family: var(--font-main);
   min-height: 100dvh;
-  -webkit-font-smoothing: none; /* ギザギザ感を残す */
+  -webkit-font-smoothing: none;
   transition: background-color 0.2s, color 0.2s;
 }
 
