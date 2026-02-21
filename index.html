@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解答入力アプリ</title>
+  <meta name="description" content="勉強用・解答用紙代替アプリ。フォーマットをカスタマイズして回答を入力できます。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- ヘッダー -->
+    <header class="app-header">
+      <div class="logo" aria-hidden="true">📝</div>
+      <div>
+        <h1>解答入力アプリ</h1>
+        <p>勉強用・デジタル解答用紙</p>
+      </div>
+    </header>
+
+    <!-- タブナビゲーション -->
+    <nav class="tab-bar" role="tablist">
+      <button class="tab-btn active" role="tab" data-target="panel-builder" aria-selected="true">
+        ⚙ フォーマット作成
+      </button>
+      <button class="tab-btn" role="tab" data-target="panel-answer" aria-selected="false">
+        ✏ 解答入力
+      </button>
+      <button class="tab-btn" role="tab" data-target="panel-sessions" aria-selected="false">
+        📚 保存済み回答
+      </button>
+    </nav>
+
+    <!-- ===== フォーマット作成パネル ===== -->
+    <section id="panel-builder" class="tab-panel active" role="tabpanel">
+
+
+      <!-- 保存・読み込みカード -->
+      <div class="card">
+        <p class="section-title" style="margin-bottom:12px;">フォーマットの保存・読み込み</p>
+        <div class="save-area">
+          <input id="save-name" class="field-input" type="text"
+                 placeholder="フォーマット名を入力…" aria-label="フォーマット名">
+          <button id="save-format" class="btn-primary" type="button">保存</button>
+        </div>
+        <div class="save-area" style="margin-top:10px;">
+          <select id="format-select" class="field-input" aria-label="保存済みフォーマット選択">
+            <option value="">── 保存済みフォーマット ──</option>
+          </select>
+          <button id="load-format" class="btn-secondary" type="button">読み込み</button>
+          <button id="delete-format" class="btn-secondary" type="button">削除</button>
+        </div>
+      </div>
+
+      <!-- 問題リスト -->
+      <div class="section-header">
+        <span class="section-title">問題リスト</span>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="count-badge"><span id="question-count">0</span> 問</span>
+          <button id="clear-builder" class="btn-secondary" type="button"
+                  style="font-size:0.8rem;padding:5px 12px;">全クリア</button>
+        </div>
+      </div>
+
+      <div id="builder-list" class="builder-list"></div>
+
+      <!-- 問題追加ボタン（リスト下部） -->
+      <div class="add-btn-group" style="margin-top:16px;">
+        <button id="add-question" class="btn-add btn-add-main" type="button">
+          <span class="icon">＋</span>問題を追加
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ===== 解答入力パネル ===== -->
+    <section id="panel-answer" class="tab-panel" role="tabpanel">
+
+      <div class="answer-header">
+        <h2 style="font-size:1rem;font-weight:700;">解答用紙</h2>
+        <button id="clear-answers" class="btn-clear-all" type="button">🗑 一括クリア</button>
+      </div>
+
+      <div id="answer-form" class="answer-list">
+        <p class="empty-msg">「フォーマット作成」タブで問題を追加してください。</p>
+      </div>
+
+      <!-- 回答保存フォーム -->
+      <div class="save-session-card">
+        <p class="section-title" style="margin-bottom:10px;">この回答を保存する</p>
+        <div class="save-session-row">
+          <input id="session-name-input" class="field-input" type="text"
+                 placeholder="保存名を入力（例: 1回目、復習など）" aria-label="回答セッション名">
+          <button id="save-answers" class="btn-primary" type="button">💾 保存</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== 保存済み回答パネル ===== -->
+    <section id="panel-sessions" class="tab-panel" role="tabpanel">
+
+      <div class="answer-header" style="margin-bottom:20px;">
+        <h2 style="font-size:1rem;font-weight:700;">保存済み回答</h2>
+      </div>
+
+      <div id="session-list">
+        <div class="empty-state">
+          <div class="icon">💾</div>
+          保存された回答はまだありません
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /.app-wrapper -->
+
+  <!-- トースト通知 -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
