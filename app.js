@@ -433,6 +433,24 @@ function loadSession(id) {
 }
 
 /* ================================================================== */
+/* テーマ切替                                                              */
+/* ================================================================== */
+const themeToggle = document.getElementById('theme-toggle');
+
+(function initTheme() {
+  const saved = localStorage.getItem('app_theme') || 'dark';
+  document.body.dataset.theme = saved;
+  themeToggle.textContent = saved === 'dark' ? '[ DARK ]' : '[ LIGHT ]';
+})();
+
+themeToggle.addEventListener('click', () => {
+  const next = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.body.dataset.theme = next;
+  localStorage.setItem('app_theme', next);
+  themeToggle.textContent = next === 'dark' ? '[ DARK ]' : '[ LIGHT ]';
+});
+
+/* ================================================================== */
 /* 初期化                                                                */
 /* ================================================================== */
 refreshFormatSelect();
