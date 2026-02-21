@@ -54,33 +54,6 @@
   --shadow-px2: 2px 2px 0 #aaaaaa;
 }
 
-/* ================================================================== */
-/* スキャンライン演出                                                      */
-/* ================================================================== */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,.06) 3px,
-    rgba(0,0,0,.06) 4px
-  );
-  pointer-events: none;
-  z-index: 9990;
-}
-
-[data-theme="light"] body::after {
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,.03) 3px,
-    rgba(0,0,0,.03) 4px
-  );
-}
 
 /* ================================================================== */
 /* リセット・ベース                                                        */
